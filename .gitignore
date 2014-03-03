@@ -1,4 +1,24 @@
+<<<<<<< HEAD
 .DS_Store
 .vagrant
 out
 
+=======
+*.gem
+*.rbc
+.bundle
+.config
+.yardoc
+Gemfile.lock
+InstalledFiles
+_yardoc
+coverage
+doc/
+lib/bundler/man
+pkg
+rdoc
+spec/reports
+test/tmp
+test/version_tmp
+tmp
+>>>>>>> 22ea0d18d2b1136529beb2e0dbba4ef39c407a83

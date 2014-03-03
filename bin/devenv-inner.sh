@@ -34,21 +34,21 @@ start(){
 		relateiq/mongo)
 	echo "Started MONGO in container $MONGO"
 
-	MYSQL=$(docker run \
-                -i -t \
-                -p 3306:3306 \
-                -d \
-		-v /vagrant/data/mysql:/var/lib/mysql
-                qtime/mysql /bin/bash -c " /run.sh")
-        echo "Started MYSQL in container $MYSQL"
+	#MYSQL=$(docker run \
+        #        -p 3306:3306 \
+	#	-name mysql \
+        #        -d \
+        #        qtime/mysql bash -c "/start.sh")
+        #echo "Started MYSQL in container $MYSQL"
 
 	METEOR=$(docker run \
 		-i -t \
                 -p 3000:3000 \
 		-v /vagrant/code:/root/code \
 		-link mongo:db \
+		-link mysql:sqldb \
                 -d \
-                comet/meteor bash)
+                qtime/meteor bash )
         echo "Started METEOR in container $METEOR"
 
 	#SHIPYARD=$(docker run \
@@ -76,10 +76,12 @@ update(){
 	cp /vagrant/etc/docker.conf /etc/init/docker.conf
 
 	#docker pull relateiq/redis
+	#docker pull qtime/mysql
+	docker pull qtime/meteor
 	docker pull relateiq/mongo
-	docker pull shipyard/shipyard
-	docker pull comet/meteor
-	docker pull tutum/mysql
+	#docker pull shipyard/shipyard
+	#docker pull comet/meteor
+	#docker pull tutum/mysql
 }
 
 
